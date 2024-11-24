@@ -18,7 +18,7 @@
   <li><strong>Clone the repository</strong>:
     <pre><code>git clone https://github.com/rzatkv/popupjsclient.git</code></pre>
   </li>
-  <li><strong>Upload files</strong>: Copy the contents of the <code>modules/addons/whmcs_announcement_popup</code> directory to your WHMCS installation directory.</li>
+  <li><strong>Upload files</strong>: Copy the contents of the <code>modules/addons/popupjsclient</code> directory to your WHMCS installation directory.</li>
   <li><strong>Activate the Add-on</strong>:
     <ul>
       <li>Log in to your WHMCS Admin area.</li>
