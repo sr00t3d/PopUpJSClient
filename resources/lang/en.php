@@ -1,0 +1,31 @@
+<?php
+
+return [
+    'module_activated' => 'PopUpJSClient module activated successfully.',
+    'module_deactivated' => 'PopUpJSClient module deactivated successfully.',
+    'add_announcement_success' => 'Announcement added successfully.',
+    'update_announcement_success' => 'Announcement updated successfully.',
+    'delete_announcement_success' => 'Announcement deleted successfully.',
+    'add_announcement_error' => 'Unable to add announcement: ',
+    'update_announcement_error' => 'Unable to update announcement: ',
+    'delete_announcement_error' => 'Unable to delete announcement: ',
+    'add_edit_announcement' => 'Add/Edit Announcement',
+    'announcement_text_placeholder' => 'Enter announcement text here',
+    'start_date' => 'Start Date',
+    'expiration_date' => 'Expiration Date',
+    'user_group' => 'User Group (optional)',
+    'multimedia_announcement' => 'Multimedia Announcement',
+    'priority' => 'Priority (1-5, 1 is highest)',
+    'add_announcement' => 'Add Announcement',
+    'edit_announcement' => 'Edit Announcement',
+    'existing_announcements' => 'Existing Announcements',
+    'created_at' => 'Created at: ',
+    'expires_at' => 'Expires at: ',
+    'priority_label' => 'Priority: ',
+    'views_label' => 'Views: ',
+    'edit' => 'Edit',
+    'delete' => 'Delete',
+    'announcement' => 'Announcement',
+    'close' => 'Close',
+    'interaction_link' => 'Click Here'
+];
