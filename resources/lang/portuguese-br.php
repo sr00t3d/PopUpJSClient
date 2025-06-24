@@ -1,0 +1,33 @@
+<?php
+
+return [
+    'module_activated' => 'Módulo ativado com sucesso.',
+    'module_deactivated' => 'Módulo desativado com sucesso.',
+    'add_announcement_success' => 'Anúncio adicionado com sucesso.',
+    'update_announcement_success' => 'Anúncio atualizado com sucesso.',
+    'delete_announcement_success' => 'Anúncio excluído com sucesso.',
+    'add_announcement_error' => 'Não foi possível adicionar o anúncio: ',
+    'update_announcement_error' => 'Não foi possível atualizar o anúncio: ',
+    'delete_announcement_error' => 'Não foi possível excluir o anúncio: ',
+    'add_edit_announcement' => 'Adicionar/Editar Anúncio',
+    'announcement_text_placeholder' => 'Digite o texto do anúncio aqui',
+    'start_date' => 'Data de Início',
+    'expiration_date' => 'Data de Expiração',
+    'user_group' => 'Grupo de Usuários (opcional)',
+    'multimedia_announcement' => 'Anúncio Multimídia',
+    'url' => 'Informe a URL',
+    'priority' => 'Prioridade (1-5, 1 é a mais alta)',
+    'add_announcement' => 'Adicionar Anúncio',
+    'edit_announcement' => 'Atualizar Anúncio',
+    'existing_announcements' => 'Anúncios Existentes',
+    'created_at' => 'Criado em: ',
+    'expires_at' => 'Expira em: ',
+    'priority_label' => 'Prioridade: ',
+    'views_label' => 'Visualizações: ',
+    'edit' => 'Editar',
+    'delete' => 'Excluir',
+    'announcement' => 'Anúncio',
+    'close' => 'Fechar',
+    'interaction_link' => 'não exibir mais hoje',
+    'see_more' => 'Veja mais'
+];

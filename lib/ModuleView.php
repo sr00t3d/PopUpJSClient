@@ -1,6 +1,6 @@
 <?php
 
-namespace WHMCS\Module\Addon\PopupJSClient;
+namespace WHMCS\Module\Addon\popupjsclient;
 
 class ModuleView {
     public static function renderForm($lang, $data = []) {
@@ -14,6 +14,7 @@ class ModuleView {
                         <input type="date" name="expires_at" placeholder="' . $lang['expiration_date'] . '" class="form-control" style="margin-bottom: 10px;" value="' . ($data['expires_at'] ?? '') . '"><br>
                         <input type="text" name="user_group" placeholder="' . $lang['user_group'] . '" class="form-control" style="margin-bottom: 10px;" value="' . ($data['user_group'] ?? '') . '"><br>
                         <label><input type="checkbox" name="is_multimedia" ' . (isset($data['is_multimedia']) && $data['is_multimedia'] ? 'checked' : '') . '> ' . $lang['multimedia_announcement'] . '</label><br><br>
+                        <input type="text" name="url" placeholder="' . $lang['url'] . '" class="form-control" style="margin-bottom: 10px;" value="' . ($data['url'] ?? '') . '"><br>
                         <input type="number" name="priority" placeholder="' . $lang['priority'] . '" class="form-control" style="margin-bottom: 10px;" value="' . ($data['priority'] ?? '3') . '"><br>
                         <input type="submit" name="new_announcement" value="' . $lang['add_announcement'] . '" class="btn btn-success">
                         <input type="submit" name="edit_announcement" value="' . $lang['edit_announcement'] . '" class="btn btn-primary">
@@ -40,6 +41,7 @@ class ModuleView {
                         <input type="hidden" name="expires_at" value="' . $announcement->expires_at . '">
                         <input type="hidden" name="user_group" value="' . $announcement->user_group . '">
                         <input type="hidden" name="is_multimedia" value="' . $announcement->is_multimedia . '">
+                        <input type="hidden" name="url" value="' . $announcement->url . '">
                         <input type="hidden" name="priority" value="' . $announcement->priority . '">
                         <input type="submit" name="edit_announcement" value="' . $lang['edit'] . '" class="btn btn-warning btn-sm" style="margin-top: 10px;">
                         <input type="submit" name="delete_announcement" value="' . $lang['delete'] . '" class="btn btn-danger btn-sm" style="margin-top: 10px;">

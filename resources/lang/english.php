@@ -1,0 +1,33 @@
+<?php
+
+return [
+    'module_activated' => 'Module activated successfully.',
+    'module_deactivated' => 'Module deactivated successfully.',
+    'add_announcement_success' => 'Announcement added successfully.',
+    'update_announcement_success' => 'Announcement updated successfully.',
+    'delete_announcement_success' => 'Announcement deleted successfully.',
+    'add_announcement_error' => 'Unable to add announcement: ',
+    'update_announcement_error' => 'Unable to update announcement: ',
+    'delete_announcement_error' => 'Unable to delete announcement: ',
+    'add_edit_announcement' => 'Add/Edit Announcement',
+    'announcement_text_placeholder' => 'Enter announcement text here',
+    'start_date' => 'Start Date',
+    'expiration_date' => 'Expiration Date',
+    'user_group' => 'User Group (optional)',
+    'multimedia_announcement' => 'Multimedia Announcement',
+    'url' => 'Inform URL',
+    'priority' => 'Priority (1-5, 1 is highest)',
+    'add_announcement' => 'Add Announcement',
+    'edit_announcement' => 'Updated Announcement',
+    'existing_announcements' => 'Existing Announcements',
+    'created_at' => 'Created at: ',
+    'expires_at' => 'Expires at: ',
+    'priority_label' => 'Priority: ',
+    'views_label' => 'Views: ',
+    'edit' => 'Edit',
+    'delete' => 'Delete',
+    'announcement' => 'Announcement',
+    'close' => 'Close',
+    'interaction_link' => 'no longer display today',
+    'see_more' => 'See more'
+];

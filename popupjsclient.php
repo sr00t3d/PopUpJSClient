@@ -4,7 +4,7 @@ if (!defined("WHMCS")) {
     die("This file cannot be accessed directly");
 }
 
-use WHMCS\Module\Addon\PopupJSClient\ModuleController;
+use WHMCS\Module\Addon\popupjsclient\ModuleController;
 
 function popupjsclient_config(): array
 {

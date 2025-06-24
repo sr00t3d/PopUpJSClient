@@ -1,6 +1,6 @@
 <?php
 
-namespace WHMCS\Module\Addon\PopupJSClient;
+namespace WHMCS\Module\Addon\popupjsclient;
 
 use Exception;
 use Illuminate\Database\Capsule\Manager as Capsule;
@@ -13,7 +13,7 @@ class Model
     public static function add($data): bool
     {
         try {
-            return Capsule::table('rzatkv_popupjsclient_lists')->insert($data);
+            return Capsule::table('tbl_popupjsclient_lists')->insert($data);
         } catch (Exception $e) {
             throw new Exception("Failed to add announcement: " . $e->getMessage());
         }
@@ -25,7 +25,7 @@ class Model
     public static function update($announcement_id, $data): int
     {
         try {
-            return Capsule::table('rzatkv_popupjsclient_lists')->where('id', $announcement_id)->update($data);
+            return Capsule::table('tbl_popupjsclient_lists')->where('id', $announcement_id)->update($data);
         } catch (Exception $e) {
             throw new Exception("Failed to update announcement: " . $e->getMessage());
         }
@@ -37,7 +37,7 @@ class Model
     public static function delete($announcement_id): int
     {
         try {
-            return Capsule::table('rzatkv_popupjsclient_lists')->where('id', $announcement_id)->delete();
+            return Capsule::table('tbl_popupjsclient_lists')->where('id', $announcement_id)->delete();
         } catch (Exception $e) {
             throw new Exception("Failed to delete announcement: " . $e->getMessage());
         }
@@ -49,7 +49,7 @@ class Model
     public static function getAll(): \Illuminate\Support\Collection
     {
         try {
-            return Capsule::table('rzatkv_popupjsclient_lists')->orderBy('priority', 'asc')->orderBy('created_at', 'desc')->get();
+            return Capsule::table('tbl_popupjsclient_lists')->orderBy('priority', 'asc')->orderBy('created_at', 'desc')->get();
         } catch (Exception $e) {
             throw new Exception("Failed to retrieve announcements: " . $e->getMessage());
         }
@@ -61,7 +61,7 @@ class Model
     public static function getLatest($userGroup)
     {
         try {
-            return Capsule::table('rzatkv_popupjsclient_lists')
+            return Capsule::table('tbl_popupjsclient_lists')
                 ->where(function ($query) use ($userGroup) {
                     $query->whereNull('expires_at')->orWhere('expires_at', '>', Capsule::raw('NOW()'));
                     $query->whereNull('start_at')->orWhere('start_at', '<=', Capsule::raw('NOW()'));
@@ -83,7 +83,7 @@ class Model
     public static function incrementViews($announcement_id): int
     {
         try {
-            return Capsule::table('rzatkv_popupjsclient_lists')->where('id', $announcement_id)->increment('views');
+            return Capsule::table('tbl_popupjsclient_lists')->where('id', $announcement_id)->increment('views');
         } catch (Exception $e) {
             throw new Exception("Failed to increment views: " . $e->getMessage());
         }
