@@ -1,3 +1,5 @@
+<img src="https://github.com/sr00t3d/PopUpJSClient/blob/docs/322es87b1-3e2b-4791-b714-369e214e6c1.jpg?raw=true" width="700">
+
 <h1>Extendend PopUpJSClient - Beautiful Pop-ups for WHMCS</h1>
 
 <p><strong>PopUpJSClient</strong> is a WHMCS add-on module that allows administrators to create and manage announcements easily, and display them as stylish pop-ups for users in the client area. The module features a user-friendly admin interface, supports multimedia announcements, and prioritizes the announcements to ensure the most important information reaches users first.</p>
