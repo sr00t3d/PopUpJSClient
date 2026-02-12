@@ -4,7 +4,7 @@ Readme: [English](README.md)
 
 <img src="https://github.com/sr00t3d/PopUpJSClient/blob/docs/322es87b1-3e2b-4791-b714-369e214e6c1.jpg?raw=true" width="700">
 
-![License](https://img.shields.io/github/license/sr00t3d/bindfilter)
+![License](https://img.shields.io/github/license/sr00t3d/PopUpJSClient)
 ![PHP Script](https://img.shields.io/badge/php-script-green)
 ![PHP Script](https://img.shields.io/badge/javascript-script-green)
 
