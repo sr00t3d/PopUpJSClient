@@ -1,56 +1,51 @@
+# PopUpJSClient - Professional Pop-ups for WHMCS 🚀
+
+Readme: [Português](README.pt-br.md)
+
+**PopUpJSClient** is an addon module for WHMCS that allows administrators to create, manage, and display announcements elegantly through pop-ups in the client area. Ideal for urgent notices, seasonal promotions, or service updates.
+
 <img src="https://github.com/sr00t3d/PopUpJSClient/blob/docs/322es87b1-3e2b-4791-b714-369e214e6c1.jpg?raw=true" width="700">
 
-<h1>Extendend PopUpJSClient - Beautiful Pop-ups for WHMCS</h1>
+![License](https://img.shields.io/github/license/sr00t3d/bindfilter)
+![PHP Script](https://img.shields.io/badge/php-script-green)
+![PHP Script](https://img.shields.io/badge/javascript-script-green)
 
-<p><strong>PopUpJSClient</strong> is a WHMCS add-on module that allows administrators to create and manage announcements easily, and display them as stylish pop-ups for users in the client area. The module features a user-friendly admin interface, supports multimedia announcements, and prioritizes the announcements to ensure the most important information reaches users first.</p>
+## ✨ Key Features
 
-<h2>Features</h2>
-<ul>
-  <li><strong>Easy Management</strong>: Add, edit, and delete announcements from the WHMCS admin panel.</li>
-  <li><strong>Multimedia Support</strong>: Create multimedia-rich announcements for more engaging communication.</li>
-  <li><strong>User Group Targeting</strong>: Announcements can be displayed based on user groups.</li>
-  <li><strong>Priority System</strong>: Assign priority levels to announcements to ensure the most critical information is shown first.</li>
-  <li><strong>Expiration Dates</strong>: Set start and expiration dates to automate the visibility of announcements.</li>
-  <li><strong>Multi-Language Support</strong>: The module supports both English and Persian languages for flexibility.</li>
-  <li><strong>Responsive Design</strong>: Pop-ups are designed to look great on both desktop and mobile devices.</li>
-</ul>
+- **Simplified Management**: Intuitive interface in the WHMCS admin panel to create, edit, and delete announcements.
+- **Multimedia Support**: Creation of rich announcements with support for images and custom links.
+- **Group Targeting**: Display specific announcements only for certain client groups.
+- **Priority System**: Ensures that critical information is viewed first.
+- **Automatic Scheduling**: Set start and expiration dates to automate your campaigns.
+- **Multilingual**: Native support for Portuguese (BR), English, Spanish, and Farsi.
+- **Responsive Design**: Pop-ups optimized for desktop and mobile devices.
 
-<h2>Updates</h2>
-<ul>
-  <li><strong>Content Type Detection</strong>: It is now possible to determine the type of content, whether it's an image or text.</li>
-  <li><strong>Dismiss for 24 Hours</strong>: The dismiss button now sets a cookie to keep the modal dismissed for the next 24 hours.</li>
-  <li><strong>Language Improvement</strong>: The language check has been corrected to align with the WHMCS standard.</li>
-  <li><strong>Enhanced Display</strong>: Modal display has been improved with new colors and effects.</li>
-  <li><strong>Table Layout Update</strong>: Tables now follow the same structure and style as used in WHMCS.</li>
-  <li><strong>Custom URL</strong>: Set a custom URL for a image or text annouce. Best fit images in 800x600 example: https://placehold.co/800x600</li>
-</ul>
+## 🔥 What’s New
 
+This extended version includes critical improvements for professional use:
+- **Smart Content Detection**: Automatically identifies whether the content is text or image for perfect rendering.
+- **Display Control (Dismiss 24h)**: Cookie implementation so the client is not bothered by the same pop-up for 24 hours after closing it.
+- **Language Standardization**: Fixes in language detection logic to align with WHMCS global standards.
+- **Visual Upgrade**: Improvements to the modal interface with new colors, transition effects, and tables following the native WHMCS style.
+- **Custom URLs**: Support for external links in image or text announcements (Recommended: Images in 800x600).
 
-<h2>Installation</h2>
-<ol>
-  <li><strong>Clone the repository</strong>:
-    <pre><code>git clone https://github.com/percioandrade/popupjsclient</code></pre>
-  </li>
-  <li><strong>Upload files</strong>: Copy the contents of the <code>modules/addons/popupjsclient</code> directory to your WHMCS installation directory.</li>
-  <li><strong>Activate the Add-on</strong>:
-    <ul>
-      <li>Log in to your WHMCS Admin area.</li>
-      <li>Navigate to <strong>Setup</strong> &gt; <strong>Addons</strong> &gt; <strong>Addon Modules</strong>.</li>
-      <li>Locate <strong>PopUpJSClient</strong> and click <strong>Activate</strong>.</li>
-    </ul>
-  </li>
-  <li><strong>Set Permissions</strong> (optional): Configure the permissions as needed for admin roles to manage announcements.</li>
-</ol>
+## 🚀 Installation
 
-<h2>Configuration</h2>
-<p>After activation, configure the module settings to fit your requirements.</p>
-<ul>
-  <li>Navigate to <strong>Addons</strong> &gt; <strong>PopUpJSClient</strong>.</li>
-  <li>Use the admin panel to add, edit, and manage announcements.</li>
-</ul>
+1 **Clone the Repository:**
 
-<h2>File Structure</h2>
-<p>The project follows a Laravel-style structure for better organization:</p>
+`git clone https://github.com/sr00t3d/PopUpJSClient/`
+
+2 File Upload: Copy the contents of the `modules/addons/popupjsclient` folder to the corresponding directory in your WHMCS installation.
+
+3 Activation:
+- Go to WHMCS Admin at **Settings** > **Addons** > **Addon Modules**.
+- Locate **PopUpJSClient** and click **Activate**.
+- Configure access permissions for the desired administrative roles.
+
+## 📁 File Structure (Laravel Standard)
+
+The project uses a modern organization to facilitate maintenance:
+
 <pre><code>/modules/addons/popupjsclient
 |-- lib
 |   |   `-- Model.php
@@ -67,38 +62,28 @@
 |-- hooks.php
 </code></pre>
 
-<h2>Usage</h2>
-<ul>
-  <li><strong>Admin Interface</strong>: Use the WHMCS admin area to add/edit/delete announcements.</li>
-  <li><strong>Client Area</strong>: Announcements are displayed as pop-ups for clients in the client area. Pop-ups appear based on the announcement's priority, user group, and validity period.</li>
-  <li><strong>Image</strong>: For a imagem simple set image url (example: https://placehold.co/800x600) and set content as multimedia and save.
-  <li><strong>Custom URL</strong>: For a custom URL set in URL text area</strong></li>
-</ul>
+# 🛠️ Requirements
+- **WHMCS**: Version 7.0 or higher.
+- **PHP**: Version 7.2 or higher.
 
-<h2>Customization</h2>
-<ul>
-  <li><strong>Languages</strong>: You can find the language files in the <code>resources/lang</code> folder. You can add more languages or customize existing translations.</li>
-  <li><strong>Styling</strong>: Pop-up styling can be customized directly in the <code>addon.php</code> file where the JavaScript code for rendering the pop-up is defined.</li>
-</ul>
+## 🤝 Contributions and Support
 
-<h2>Requirements</h2>
-<ul>
-  <li>WHMCS version 7.0 or higher.</li>
-  <li>PHP version 7.2 or higher.</li>
-</ul>
+This project is an extended fork based on the original work of **Reza Karimi**. Contributions are welcome!
 
-<h2>Contributing</h2>
-<p>Contributions are welcome! Feel free to open an issue or submit a pull request to help make <strong>PopUpJSClient</strong> even better.</p>
+- **Original Author**: Reza Karimi
+- **Improvements and Maintenance**: Percio Andrade
 
-<h2>License</h2>
-<p>This project is licensed under the MIT License. See the <a href="LICENSE">LICENSE</a> file for more information.</p>
+## ⚠️ Disclaimer
 
-<h2>Contact</h2>
-<ul>
-  <li><strong>Author</strong>: Reza Karimi - <a href="mailto:rzatkv@icloud.com">rzatkv@icloud.com</a></li>
-  <li><strong>Changes</strong>: Percio Andrade - <a href="mailto:percio@zendev.com.br">percio@zendev.com.br</a></li>
-</ul>
-<p>If you have any questions or feedback, feel free to contact me! 😊</p>
+> [!WARNING]
+> This software is provided "as is". Always make sure to test in a development environment first. The author is not responsible for any misuse, legal consequences, or data impact caused by this tool.
 
-<hr>
-<p>Thank you for using <strong>PopUpJSClient</strong>! If you find this project useful, please consider giving it a star ⭐ on GitHub!</p>
+## 📚 Detailed Tutorial
+
+For a complete, step-by-step guide on how to import generated files into Thunderbird and troubleshoot common migration issues, check out my full article:
+
+👉 [**Create modal popups in WHMCS**](https://perciocastelo.com.br/blog/create-modal-popups-in-whmcs.html)
+
+## License 📄
+
+This project is licensed under the **GNU General Public License v3.0**. See the [LICENSE](LICENSE) file for more details.
