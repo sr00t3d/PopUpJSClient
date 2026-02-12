@@ -2,13 +2,13 @@
 
 Readme: [English](README.md)
 
-O **PopUpJSClient** é um módulo addon para WHMCS que permite aos administradores criar, gerir e exibir anúncios de forma elegante através de pop-ups na área do cliente. Ideal para avisos urgentes, promoções sazonais ou atualizações de serviço.
-
 <img src="https://github.com/sr00t3d/PopUpJSClient/blob/docs/322es87b1-3e2b-4791-b714-369e214e6c1.jpg?raw=true" width="700">
 
 ![License](https://img.shields.io/github/license/sr00t3d/bindfilter)
 ![PHP Script](https://img.shields.io/badge/php-script-green)
 ![PHP Script](https://img.shields.io/badge/javascript-script-green)
+
+O **PopUpJSClient** é um módulo addon para WHMCS que permite aos administradores criar, gerir e exibir anúncios de forma elegante através de pop-ups na área do cliente. Ideal para avisos urgentes, promoções sazonais ou atualizações de serviço.
 
 ## ✨ Funcionalidades Principais
 
@@ -33,7 +33,9 @@ Esta versão estendida inclui melhorias críticas para uso profissional:
 
 1 **Clonar o Repositório:**
 
-`git clone https://github.com/sr00t3d/PopUpJSClient/`
+```bash
+git clone https://github.com/sr00t3d/PopUpJSClient/`
+```
 
 2 Upload de Ficheiros: Copie o conteúdo da pasta `modules/addons/popupjsclient` para o diretório correspondente na sua instalação do WHMCS.
 
