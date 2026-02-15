@@ -1,6 +1,6 @@
 # PopUpJSClient - Professional Pop-ups for WHMCS 🚀
 
-Readme: [Português](README.pt-br.md)
+Readme: [Português](README-ptbr.md)
 
 <img src="https://github.com/sr00t3d/PopUpJSClient/blob/docs/322es87b1-3e2b-4791-b714-369e214e6c1.jpg?raw=true" width="700">
 
