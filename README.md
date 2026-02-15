@@ -73,14 +73,14 @@ This project is an extended fork based on the original work of **Reza Karimi**. 
 - **Original Author**: Reza Karimi
 - **Improvements and Maintenance**: Percio Andrade
 
-## ⚠️ Disclaimer
+## ⚠️ Legal Notice
 
 > [!WARNING]
-> This software is provided "as is". Always make sure to test in a development environment first. The author is not responsible for any misuse, legal consequences, or data impact caused by this tool.
+> This software is provided "as is". Always make sure to test first in a development environment. The author is not responsible for any misuse, legal consequences, or data impact caused by this tool.
 
 ## 📚 Detailed Tutorial
 
-For a complete, step-by-step guide on how to import generated files into Thunderbird and troubleshoot common migration issues, check out my full article:
+For a complete, step-by-step guide, check out my full article:
 
 👉 [**Create modal popups in WHMCS**](https://perciocastelo.com.br/blog/create-modal-popups-in-whmcs.html)
 
