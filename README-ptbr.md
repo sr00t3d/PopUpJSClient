@@ -75,16 +75,16 @@ Este projeto é um fork estendido baseado no trabalho original de **Reza Karimi*
 - **Autor Original**: Reza Karimi
 - **Melhorias e Manutenção**: Percio Andrade
 
-## ⚠️ Disclaimer
+## ⚠️ Aviso Legal
 
 > [!WARNING]
-> Este software é fornecido "tal como está". Certifique-se sempre realizar testes em ambiente de desenvolvimento antes. O autor não se responsabiliza por qualquer uso indevido, consequências legais ou impacto nos dados causados ​​por esta ferramenta.
+> Este software é fornecido "como está". Certifique-se sempre de testar primeiro em um ambiente de desenvolvimento. O autor não se responsabiliza por qualquer uso indevido, consequências legais ou impacto em dados causado por esta ferramenta.
 
 ## 📚 Tutorial Detalhado
 
-Para um guia completo, passo a passo, sobre como importar os arquivos gerados para o Thunderbird e solucionar problemas comuns de migração, confira meu artigo completo:
+Para um guia completo, passo a passo, confira meu artigo completo:
 
-👉 [**Create modal popups in WHMCS**](https://perciocastelo.com.br/blog/create-modal-popups-in-whmcs.html)
+👉 [**Criar janelas modais no WHMCS**](https://perciocastelo.com.br/blog/create-modal-popups-in-whmcs.html)
 
 ## Licença 📄
 
