@@ -1,16 +1,14 @@
-# PopUpJSClient - Professional Pop-ups for WHMCS 🚀
+# PopUpJSClient - Professional Pop-ups for WHMCS
 
 Readme: [BR](README-ptbr.md)
 
-![License](https://img.shields.io/github/license/sr00t3d/PopUpJSClient)
-![PHP Script](https://img.shields.io/badge/php-script-green)
-![PHP Script](https://img.shields.io/badge/javascript-script-green)
+![License](https://img.shields.io/github/license/sr00t3d/PopUpJSClient) ![PHP Script](https://img.shields.io/badge/php-script-green) ![Javascript Script](https://img.shields.io/badge/javascript-script-green)
 
 <img src="popupjsclient-cover.wepb" width="700">
 
 **PopUpJSClient** is an addon module for WHMCS that allows administrators to create, manage, and display announcements elegantly through pop-ups in the client area. Ideal for urgent notices, seasonal promotions, or service updates.
 
-## ✨ Key Features
+## Key Features
 
 - **Simplified Management**: Intuitive interface in the WHMCS admin panel to create, edit, and delete announcements.
 - **Multimedia Support**: Creation of rich announcements with support for images and custom links.
@@ -20,7 +18,7 @@ Readme: [BR](README-ptbr.md)
 - **Multilingual**: Native support for Portuguese (BR), English, Spanish, and Farsi.
 - **Responsive Design**: Pop-ups optimized for desktop and mobile devices.
 
-## 🔥 What’s New
+## What’s New
 
 This extended version includes critical improvements for professional use:
 - **Smart Content Detection**: Automatically identifies whether the content is text or image for perfect rendering.
@@ -29,7 +27,7 @@ This extended version includes critical improvements for professional use:
 - **Visual Upgrade**: Improvements to the modal interface with new colors, transition effects, and tables following the native WHMCS style.
 - **Custom URLs**: Support for external links in image or text announcements (Recommended: Images in 800x600).
 
-## 🚀 Installation
+## Installation
 
 1 **Clone the Repository:**
 
@@ -42,7 +40,7 @@ This extended version includes critical improvements for professional use:
 - Locate **PopUpJSClient** and click **Activate**.
 - Configure access permissions for the desired administrative roles.
 
-## 📁 File Structure (Laravel Standard)
+## File Structure (Laravel Standard)
 
 The project uses a modern organization to facilitate maintenance:
 
@@ -62,28 +60,28 @@ The project uses a modern organization to facilitate maintenance:
 |-- hooks.php
 </code></pre>
 
-# 🛠️ Requirements
+# Requirements
 - **WHMCS**: Version 7.0 or higher.
 - **PHP**: Version 7.2 or higher.
 
-## 🤝 Contributions and Support
+## Contributions and Support
 
 This project is an extended fork based on the original work of **Reza Karimi**. Contributions are welcome!
 
 - **Original Author**: Reza Karimi
 - **Improvements and Maintenance**: Percio Andrade
 
-## ⚠️ Legal Notice
+## Legal Notice
 
 > [!WARNING]
 > This software is provided "as is." Always ensure you have explicit permission before executing it. The author is not responsible for any misuse, legal consequences, or data impact caused by this tool.
 
-## 📚 Detailed Tutorial
+## Detailed Tutorial
 
 For a complete, step-by-step guide, check out my full article:
 
 👉 [**Create modal popups in WHMCS**](https://perciocastelo.com.br/blog/create-modal-popups-in-whmcs.html)
 
-## License 📄
+## License
 
 This project is licensed under the **GNU General Public License v3.0**. See the [LICENSE](LICENSE) file for more details.
