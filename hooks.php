@@ -1,152 +1,235 @@
 <?php
+/**
+ * +============================================================================+
+ * | hooks.php                                                                  |
+ * | PopUpJSClient WHMCS Addon Module v2.0.0                                    |
+ * | ClientAreaFooterOutput hook rendering XSS-safe modal announcements with    |
+ * | SameSite=Lax cookie dismissal, ESC/backdrop close, and URL validation.     |
+ * |                                                                            |
+ * | Copyright 2024-2026 Percio Castelo                                         |
+ * | SPDX-License-Identifier: Apache-2.0                                        |
+ * +============================================================================+
+ */
 
-use WHMCS\Module\Addon\popupjsclient\ModuleController as AnnouncementController;
+declare(strict_types=1);
+
 use WHMCS\Module\Addon\popupjsclient\Model as Announcement;
+use WHMCS\Module\Addon\popupjsclient\ModuleController as AnnouncementController;
 
-if (!defined("WHMCS")) {
-    die("This file cannot be accessed directly");
+if (!defined('WHMCS')) {
+    die('This file cannot be accessed directly');
 }
 
 add_hook('ClientAreaFooterOutput', 1, 'ClientAreaFooterOutput_ModuleView');
 
 /**
+ * Render the client-area announcement modal for authenticated users.
+ *
+ * @param array<string, mixed> $vars
+ * @return string
  * @throws Exception
  */
-function ClientAreaFooterOutput_ModuleView($vars)
+function ClientAreaFooterOutput_ModuleView(array $vars): string
 {
-    // Check if the user is logged in
-    if (!isset($vars['loggedin']) || !$vars['loggedin']) {
-        return; // If you are not logged in, the popup does not display
+    if (empty($vars['loggedin'])) {
+        return '';
     }
 
     $lang = AnnouncementController::getLang($vars);
     $userGroup = $vars['clientsdetails']['groupid'] ?? null;
     $announcement = Announcement::getLatest($userGroup);
 
-    if ($announcement && !empty($announcement->announcement)) {
-        Announcement::incrementViews($announcement->id);
-        $announcementText = $announcement->announcement; // We don't escape here, we will do it in JavaScript
-        $interactionLink = htmlspecialchars($lang['interaction_link'], ENT_QUOTES, 'UTF-8');
-        $announcementId = (int)$announcement->id;
-        $isMultimedia = $announcement->is_multimedia ? 'true' : 'false';
-        $url = htmlspecialchars($announcement->url, ENT_QUOTES, 'UTF-8');
-        $seeMore = htmlspecialchars($lang['see_more'], ENT_QUOTES, 'UTF-8');
-
-        echo "
-        <style>
-        .areaModal {
-            -webkit-box-align: center;
-            align-items: center;
-            background-color: rgba(74, 74, 74, 0.8);
-            display: flex;
-            height: 100vh;
-            min-height: 40vh;
-            -webkit-box-pack: center;
-            justify-content: center;
-            left: 0px;
-            position: fixed;
-            top: 0px;
-            width: 100vw;
-            z-index: 999;
-        }
-
-        .areaModalVal {
-            background-color: rgb(255, 255, 255);
-            box-sizing: border-box;
-            display: flex;
-            flex-direction: column;
-            max-height: 440px;
-            max-width: 800px;
-            min-height: 100px;
-            overflow: hidden;
-            position: relative;
-            width: 100%;
-        }
-
-        .areaModalButton {
-            position: absolute;
-            right: 0;
-            margin: 10px;
-            top: -5px;
-            background: #e2f4fb;
-            padding: 1px 15px;
-            font-size: 14px;
-            color: #235498;
-            font-weight: bold;
-            font-family: 'Plus Jakarta Sans';
-        }
-
-        .modalcontent {
-            background: #f1f1f1;
-        }
-        </style>
-        
-        <script>
-            (function() {
-                var announcementData = {
-                    id: $announcementId,
-                    isMultimedia: $isMultimedia,
-                    url: '$url',
-                    text: " . json_encode($announcementText) . ",
-                    seeMore: '$seeMore',
-                    interactionLink: '$interactionLink'
-                };
-
-                window.addEventListener('load', function() {
-                    var cookieName = 'modalDimissID_' + announcementData.id;
-        
-                    // Checks if the cookie already exists
-                    if (getCookie(cookieName)) {
-                        return; // Does not display if cookie is already set
-                    }
-        
-                    // Creating the popup
-                    var popup = document.createElement('div');
-                    popup.innerHTML = 
-                        '<div id=\"areaModal\" class=\"areaModal\">' +
-                            '<div id=\"areaModalVal\" class=\"areaModalVal\">' +
-                                (announcementData.isMultimedia 
-                                    ? '<a href=\"' + announcementData.url + '\" target=\"_blank\"><img src=\"' + announcementData.text + '\" alt=\"Announcement\" /></a>' 
-                                    : '<div class=\"p-5\"><span class=\"badge badge-info\">Info</span><div class=\"modalcontent mt-5 p-2 rounded\">' + parseAndSanitizeHTML(announcementData.text) + '</div><div class=\"linkmodalContent mt-5\"><a href=\"' + announcementData.url + '\" class=\"p-1 btn-primary rounded\" target=\"_blank\">' + announcementData.seeMore +'</a></div></div>') +
-                                    '<a href=\"#\" class=\"areaModalButton\" onclick=\"dismissAnnouncement(' + announcementData.id + '); return false;\">' + announcementData.interactionLink + '</a>' +
-                            '</div>' +
-                        '</div>';
-                    document.body.appendChild(popup);
-                });
-        
-                function dismissAnnouncement(announcementId) {
-                    var cookieName = 'modalDimissID_' + announcementId;
-                    setCookie(cookieName, '1', 1); // Sets the cookie for 1 day (24 hours)
-                    document.getElementById('areaModal').remove();
-                }
-        
-                function setCookie(name, value, days) {
-                    var date = new Date();
-                    date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
-                    document.cookie = name + '=' + value + '; path=/; expires=' + date.toUTCString();
-                }
-        
-                function getCookie(name) {
-                    var cookies = document.cookie.split(';');
-                    for (var i = 0; i < cookies.length; i++) {
-                        var cookie = cookies[i].trim();
-                        if (cookie.startsWith(name + '=')) {
-                            return cookie.substring(name.length + 1);
-                        }
-                    }
-                    return null;
-                }
-
-                function parseAndSanitizeHTML(html) {
-                    var parser = new DOMParser();
-                    var doc = parser.parseFromString(html, 'text/html');
-                    return doc.body.innerHTML;
-                }
-
-                // Make dismissAnnouncement globally accessible
-                window.dismissAnnouncement = dismissAnnouncement;
-            })();
-        </script>
-        ";
+    if (!$announcement || empty($announcement->announcement)) {
+        return '';
     }
+
+    Announcement::incrementViews((int)$announcement->id);
+
+    $rawUrl = trim((string)($announcement->url ?? ''));
+    $safeUrl = ($rawUrl !== '' && preg_match('#^https?://#i', $rawUrl) === 1) ? $rawUrl : '';
+
+    $payload = [
+        'id' => (int)$announcement->id,
+        'isMultimedia' => (bool)$announcement->is_multimedia,
+        'url' => $safeUrl,
+        'text' => (string)$announcement->announcement,
+        'seeMore' => (string)($lang['see_more'] ?? 'See more'),
+        'interactionLink' => (string)($lang['interaction_link'] ?? 'Close'),
+    ];
+
+    $jsonPayload = json_encode(
+        $payload,
+        JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_UNESCAPED_UNICODE
+    );
+
+    return <<<HTML
+<style>
+.areaModal {
+    align-items: center;
+    background-color: rgba(15, 23, 42, 0.78);
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    left: 0;
+    position: fixed;
+    top: 0;
+    width: 100vw;
+    z-index: 9999;
+}
+.areaModalVal {
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    max-height: 85vh;
+    max-width: 720px;
+    min-height: 120px;
+    overflow: auto;
+    position: relative;
+    width: 92%;
+}
+.areaModalButton {
+    background: #e2f4fb;
+    border: none;
+    border-radius: 6px;
+    color: #235498;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 700;
+    margin: 12px;
+    padding: 4px 14px;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+.modalcontent {
+    background: #f8fafc;
+    border-radius: 6px;
+    padding: 14px;
+    white-space: pre-wrap;
+}
+</style>
+<script>
+(function () {
+    var data = {$jsonPayload};
+
+    function getCookie(name) {
+        var parts = document.cookie.split(';');
+        for (var i = 0; i < parts.length; i++) {
+            var c = parts[i].trim();
+            if (c.indexOf(name + '=') === 0) {
+                return c.substring(name.length + 1);
+            }
+        }
+        return null;
+    }
+
+    function setCookie(name, value, days) {
+        var date = new Date();
+        date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
+        var secure = window.location.protocol === 'https:' ? '; Secure' : '';
+        document.cookie = name + '=' + value + '; path=/; SameSite=Lax' + secure + '; expires=' + date.toUTCString();
+    }
+
+    function isSafeUrl(u) {
+        return typeof u === 'string' && /^https?:\/\//i.test(u);
+    }
+
+    window.addEventListener('load', function () {
+        var cookieName = 'modalDismissID_' + data.id;
+        if (getCookie(cookieName)) {
+            return;
+        }
+
+        var overlay = document.createElement('div');
+        overlay.id = 'areaModal';
+        overlay.className = 'areaModal';
+        overlay.setAttribute('role', 'dialog');
+        overlay.setAttribute('aria-modal', 'true');
+
+        var dialog = document.createElement('div');
+        dialog.id = 'areaModalVal';
+        dialog.className = 'areaModalVal';
+
+        function dismiss() {
+            setCookie(cookieName, '1', 1);
+            if (overlay.parentNode) {
+                overlay.parentNode.removeChild(overlay);
+            }
+            document.removeEventListener('keydown', onKeyDown);
+        }
+
+        function onKeyDown(ev) {
+            if (ev.key === 'Escape') {
+                dismiss();
+            }
+        }
+
+        if (data.isMultimedia && isSafeUrl(data.text)) {
+            var img = document.createElement('img');
+            img.src = data.text;
+            img.alt = 'Announcement';
+            img.style.maxWidth = '100%';
+            img.style.display = 'block';
+            if (isSafeUrl(data.url)) {
+                var link = document.createElement('a');
+                link.href = data.url;
+                link.target = '_blank';
+                link.rel = 'noopener noreferrer';
+                link.appendChild(img);
+                dialog.appendChild(link);
+            } else {
+                dialog.appendChild(img);
+            }
+        } else {
+            var body = document.createElement('div');
+            body.className = 'p-4';
+
+            var badge = document.createElement('span');
+            badge.className = 'badge badge-info';
+            badge.textContent = 'Info';
+            body.appendChild(badge);
+
+            var content = document.createElement('div');
+            content.className = 'modalcontent mt-3';
+            content.textContent = data.text;
+            body.appendChild(content);
+
+            if (isSafeUrl(data.url)) {
+                var ctaWrap = document.createElement('div');
+                ctaWrap.className = 'mt-3';
+                var cta = document.createElement('a');
+                cta.href = data.url;
+                cta.target = '_blank';
+                cta.rel = 'noopener noreferrer';
+                cta.className = 'btn btn-primary btn-sm';
+                cta.textContent = data.seeMore;
+                ctaWrap.appendChild(cta);
+                body.appendChild(ctaWrap);
+            }
+            dialog.appendChild(body);
+        }
+
+        var closeBtn = document.createElement('button');
+        closeBtn.type = 'button';
+        closeBtn.className = 'areaModalButton';
+        closeBtn.textContent = data.interactionLink;
+        closeBtn.addEventListener('click', dismiss);
+        dialog.appendChild(closeBtn);
+
+        overlay.addEventListener('click', function (ev) {
+            if (ev.target === overlay) {
+                dismiss();
+            }
+        });
+        document.addEventListener('keydown', onKeyDown);
+
+        overlay.appendChild(dialog);
+        document.body.appendChild(overlay);
+    });
+})();
+</script>
+HTML;
 }

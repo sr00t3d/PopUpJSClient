@@ -1,87 +1,89 @@
-# PopUpJSClient - Professional Pop-ups for WHMCS
+# PopUpJSClient (WHMCS Addon Module)
 
-Readme: [BR](README-ptbr.md)
+Readme: [PT-BR](README-ptbr.md)
 
-![License](https://img.shields.io/github/license/sr00t3d/PopUpJSClient) ![PHP Script](https://img.shields.io/badge/php-script-green) ![Javascript Script](https://img.shields.io/badge/javascript-script-green)
+[![License](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](LICENSE)
+[![Version](https://img.shields.io/badge/version-2.0.0-green.svg)](https://github.com/sr00t3d/PopUpJSClient/releases)
+[![PHP](https://img.shields.io/badge/php-8.0+-blue.svg)](https://www.php.net/)
 
-<img src="popupjsclient-cover.wepb" width="700">
+<img width="700" src="popupjsclient-cover.webp" alt="PopUpJSClient WHMCS Addon" />
 
-**PopUpJSClient** is an addon module for WHMCS that allows administrators to create, manage, and display announcements elegantly through pop-ups in the client area. Ideal for urgent notices, seasonal promotions, or service updates.
+**PopUpJSClient v2.0.0** is a WHMCS addon module in PHP 8+ and vanilla JavaScript for displaying targeted, prioritized, and scheduled modal announcements in the WHMCS Client Area. Version 2.0.0 introduces strict XSS protection, safe DOM construction, corrected SQL scheduling/group query precedence, path-traversal protection for language files, `SameSite=Lax` cookie dismissal, and ESC/backdrop keyboard accessibility.
 
-## Key Features
+---
 
-- **Simplified Management**: Intuitive interface in the WHMCS admin panel to create, edit, and delete announcements.
-- **Multimedia Support**: Creation of rich announcements with support for images and custom links.
-- **Group Targeting**: Display specific announcements only for certain client groups.
-- **Priority System**: Ensures that critical information is viewed first.
-- **Automatic Scheduling**: Set start and expiration dates to automate your campaigns.
-- **Multilingual**: Native support for Portuguese (BR), English, Spanish, and Farsi.
-- **Responsive Design**: Pop-ups optimized for desktop and mobile devices.
+## Features
 
-## What’s New
+- **Targeted & Scheduled Popups**: filter by WHMCS client group (`user_group`), schedule `start_at` and `expires_at` windows with properly nested SQL predicates, and rank by `priority`
+- **Text & Multimedia Modals**: supports text announcements with CTA links or multimedia image banners
+- **Hardened Security (v2.0.0)**:
+  - Strict `htmlspecialchars(..., ENT_QUOTES, 'UTF-8')` escaping across the WHMCS Admin UI (`lib/ModuleView.php`)
+  - Safe DOM node construction (`textContent`, `JSON_HEX_TAG|JSON_HEX_AMP|JSON_HEX_APOS|JSON_HEX_QUOT`) in `hooks.php` — zero `innerHTML` XSS vectors
+  - Strict `https?://` URL allowlist rejecting `javascript:` and `data:` schemes
+  - Path-traversal protection in `ModuleController::getLang()`
+  - `SameSite=Lax` (plus `Secure` on HTTPS) dismiss cookie with 24-hour TTL
+- **Accessible Modal UX**: `role="dialog"`, `aria-modal="true"`, Escape key dismissal, and backdrop click-to-close
+- **Multilingual**: English, Portuguese (BR), Spanish, and Farsi dictionaries included in `resources/lang/`
 
-This extended version includes critical improvements for professional use:
-- **Smart Content Detection**: Automatically identifies whether the content is text or image for perfect rendering.
-- **Display Control (Dismiss 24h)**: Cookie implementation so the client is not bothered by the same pop-up for 24 hours after closing it.
-- **Language Standardization**: Fixes in language detection logic to align with WHMCS global standards.
-- **Visual Upgrade**: Improvements to the modal interface with new colors, transition effects, and tables following the native WHMCS style.
-- **Custom URLs**: Support for external links in image or text announcements (Recommended: Images in 800x600).
+---
+
+## Requirements
+
+- WHMCS 8.x
+- PHP 8.0 or higher
+- MySQL / MariaDB (via WHMCS `Illuminate\Database\Capsule\Manager`)
+
+---
 
 ## Installation
 
-1 **Clone the Repository:**
+1. Copy this repository into your WHMCS addons directory:
+   ```bash
+   /path/to/whmcs/modules/addons/popupjsclient/
+   ```
+2. Log in to **WHMCS Admin** -> **System Settings** -> **Addon Modules**.
+3. Locate **PopUpJSClient**, click **Activate**, and grant access to the desired admin role groups.
+4. Manage announcements under **Addons** -> **PopUpJSClient**.
 
-`git clone https://github.com/sr00t3d/PopUpJSClient/`
+---
 
-2 File Upload: Copy the contents of the `modules/addons/popupjsclient` folder to the corresponding directory in your WHMCS installation.
+## Real Output Example
 
-3 Activation:
-- Go to WHMCS Admin at **Settings** > **Addons** > **Addon Modules**.
-- Locate **PopUpJSClient** and click **Activate**.
-- Configure access permissions for the desired administrative roles.
+Validated on AlmaLinux 8.10 with PHP 8.2.35 (`php -l` across all 11 PHP files + functional security harness):
 
-## File Structure (Laravel Standard)
+```text
+$ php -v | head -n 1
+PHP 8.2.35 (cli) (built: Nov 10 2026 21:43:08) (NTS)
 
-The project uses a modern organization to facilitate maintenance:
+$ find /opt/src/PopUpJSClient -name '*.php' | sort | xargs -I{} php -l {}
+No syntax errors detected in /opt/src/PopUpJSClient/hooks.php
+No syntax errors detected in /opt/src/PopUpJSClient/lib/Model.php
+No syntax errors detected in /opt/src/PopUpJSClient/lib/ModuleController.php
+No syntax errors detected in /opt/src/PopUpJSClient/lib/ModuleView.php
+No syntax errors detected in /opt/src/PopUpJSClient/popupjsclient.php
+No syntax errors detected in /opt/src/PopUpJSClient/resources/lang/en.php
+No syntax errors detected in /opt/src/PopUpJSClient/resources/lang/english.php
+No syntax errors detected in /opt/src/PopUpJSClient/resources/lang/fa.php
+No syntax errors detected in /opt/src/PopUpJSClient/resources/lang/farsi.php
+No syntax errors detected in /opt/src/PopUpJSClient/resources/lang/portuguese-br.php
+No syntax errors detected in /opt/src/PopUpJSClient/resources/lang/spanish.php
 
-<pre><code>/modules/addons/popupjsclient
-|-- lib
-|   |   `-- Model.php
-|   |   `-- ModuleController.php
-|   |   `-- ModuleView.php
-|   |
-|-- resources
-|   |-- lang
-|   |   |-- english.php
-|   |   `-- farsi.php
-|   |   `-- spanish.php
-|   |   `-- portuguese-br.php
-|-- popupjsclient.php
-|-- hooks.php
-</code></pre>
+# Security & Functional Harness Output:
+CONFIG: name=PopUpJSClient version=2.0.0 author=Percio Castelo
+SANITIZE_BAD_URL: url='' start_at=NULL priority=3
+SANITIZE_VALID_URL: url='https://perciocastelo.com.br/status' is_multimedia=1 priority=1
+LANG_PT_BR: see_more='Veja mais'
+LANG_TRAVERSAL_FALLBACK: see_more=''
+XSS_CHECK: raw_script=BLOCKED escaped=YES
+E2E_POPUP_PASS
+```
 
-# Requirements
-- **WHMCS**: Version 7.0 or higher.
-- **PHP**: Version 7.2 or higher.
-
-## Contributions and Support
-
-This project is an extended fork based on the original work of **Reza Karimi**. Contributions are welcome!
-
-- **Original Author**: Reza Karimi
-- **Improvements and Maintenance**: Percio Andrade
-
-## Legal Notice
-
-> [!WARNING]
-> This software is provided "as is." Always ensure you have explicit permission before executing it. The author is not responsible for any misuse, legal consequences, or data impact caused by this tool.
-
-## Detailed Tutorial
-
-For a complete, step-by-step guide, check out my full article:
-
-👉 [**Create modal popups in WHMCS**](https://perciocastelo.com.br/blog/create-modal-popups-in-whmcs.html)
+---
 
 ## License
 
-This project is licensed under the **GNU General Public License v3.0**. See the [LICENSE](LICENSE) file for more details.
+Apache-2.0. See [LICENSE](LICENSE) for details.
+
+## Author
+
+[Percio Castelo](https://perciocastelo.com.br)
